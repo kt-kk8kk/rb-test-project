@@ -1,0 +1,7 @@
+.ingredients_group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 calc(var(--offset-base-size) * 6);
+	margin: 0;
+	list-style: none;
+}
