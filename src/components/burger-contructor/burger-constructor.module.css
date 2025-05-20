@@ -5,3 +5,29 @@
 	padding-bottom: 20px;
 	color: var(--text-primary-color);
 }
+
+.fillings {
+	margin: 0;
+	padding: 0 calc(var(--offset-base-size) * 2) 0 0;
+	list-style: none;
+}
+
+.fillings li {
+	display: flex;
+	align-items: center;
+	gap: 0 calc(var(--offset-base-size) * 2);
+	margin-bottom: calc(var(--offset-base-size) * 4);
+}
+
+.fillings li:last-child {
+	margin-bottom: 0;
+}
+
+.constructor_footer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 0 calc(var(--offset-base-size) * 10);
+	width: 100%;
+	max-width: 568px;
+}

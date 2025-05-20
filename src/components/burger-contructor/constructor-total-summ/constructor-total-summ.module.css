@@ -1,0 +1,5 @@
+.total {
+	display: flex;
+	align-items: center;
+	gap: 0 calc(var(--offset-base-size) * 2);
+}
