@@ -17,7 +17,9 @@ export const IngredientItem = ({
 }: TIngredientItemProps): React.JSX.Element => {
 	return (
 		<li className={`${styles.item} mb-10`}>
-			<button className={styles.item_btn} onClick={() => onClick(ingredient)}>
+			<button
+				className={styles.item_btn}
+				onClick={() => onClick(ingredient)}>
 				<Counter count={1} size='default' />
 				<div className={`${styles.img_wrap} mb-1`}>
 					<img
@@ -29,7 +31,9 @@ export const IngredientItem = ({
 					/>
 				</div>
 				<div className={`${styles.price_wrap} mb-2`}>
-					<span className={'text_type_digits-default'}>{ingredient.price}</span>
+					<span className={'text_type_digits-default'}>
+						{ingredient.price}
+					</span>
 					<CurrencyIcon type='primary' />
 				</div>
 				<div className={'text text_type_main-default pb-6'}>

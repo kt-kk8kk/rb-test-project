@@ -20,27 +20,39 @@ export const IngredientDetails = ({
 					alt={ingredient.name}
 				/>
 			</div>
-			<h4 className={'text text_type_main-medium mb-8'}>{ingredient.name}</h4>
+			<h4 className={'text text_type_main-medium mb-8'}>
+				{ingredient.name}
+			</h4>
 			<ul
 				className={`${styles.ingredient_nutrition} text text_color_inactive mb-5`}>
 				<li>
-					<span className={`${styles.nutrition_title} mb-2`}>Калории,ккал</span>
+					<span className={`${styles.nutrition_title} mb-2`}>
+						Калории,ккал
+					</span>
 					<span className={'text_type_digits-default'}>
 						{ingredient.calories}
 					</span>
 				</li>
 				<li>
-					<span className={`${styles.nutrition_title} mb-2`}>Белки,г</span>
+					<span className={`${styles.nutrition_title} mb-2`}>
+						Белки,г
+					</span>
 					<span className={'text_type_digits-default'}>
 						{ingredient.proteins}
 					</span>
 				</li>
 				<li>
-					<span className={`${styles.nutrition_title} mb-2`}>Жиры,г</span>
-					<span className={'text_type_digits-default'}>{ingredient.fat}</span>
+					<span className={`${styles.nutrition_title} mb-2`}>
+						Жиры,г
+					</span>
+					<span className={'text_type_digits-default'}>
+						{ingredient.fat}
+					</span>
 				</li>
 				<li>
-					<span className={`${styles.nutrition_title} mb-2`}>Углеводы,г</span>
+					<span className={`${styles.nutrition_title} mb-2`}>
+						Углеводы,г
+					</span>
 					<span className={'text_type_digits-default'}>
 						{ingredient.carbohydrates}
 					</span>

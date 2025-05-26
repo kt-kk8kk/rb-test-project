@@ -28,7 +28,9 @@ export const OrderDetails = ({
 				<img src={src} width={107} height={102} alt={copy} />
 			</div>
 			<div className={'text_type_main-default mb-2'}>{copy}</div>
-			<div className={'text_type_main-default text_color_inactive'}>{add}</div>
+			<div className={'text_type_main-default text_color_inactive'}>
+				{add}
+			</div>
 		</div>
 	);
 };

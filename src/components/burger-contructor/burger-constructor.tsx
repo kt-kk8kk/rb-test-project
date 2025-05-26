@@ -9,18 +9,23 @@ import { BurgerScroll } from '../burger-scroll/burger-scroll';
 import { ConstructorTotalSumm } from './constructor-total-summ/constructor-total-summ';
 import { Modal } from '../modal/modal';
 import { OrderDetails } from './order-details/order-details';
-import { TIngredient } from '@utils/types.ts';
+//import { TIngredient } from '@utils/types.ts';
 import Graphics from '../../images/graphics.png';
 
-type TBurgerConstructorProps = {
-	ingredients: TIngredient[];
-};
+import { useSelector } from 'react-redux';
+import { RootState } from '@services/store';
 
-export const BurgerConstructor = ({
-	ingredients,
-}: TBurgerConstructorProps): React.JSX.Element => {
-	const bun = ingredients.find((item) => item.type === 'bun');
-	const fillings = ingredients.filter((item) => item.type !== 'bun');
+// type TBurgerConstructorProps = {
+// 	ingredients: TIngredient[];
+// };
+
+export const BurgerConstructor = (): React.JSX.Element => {
+	// ⬇ получаем ингредиенты из Redux
+	const bun = useSelector((state: RootState) => state.burgerConstructor.bun);
+	const ingredients = useSelector(
+		(state: RootState) => state.burgerConstructor.ingredients
+	);
+	const fillings = (ingredients ?? []).filter((item) => item.type !== 'bun');
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const handleOpenModal = () => setIsModalOpen(true);

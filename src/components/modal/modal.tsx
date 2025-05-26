@@ -34,7 +34,9 @@ export const Modal = ({
 				<span className={styles.modal_closer}>
 					<CloseIcon type='primary' onClick={onClose} />
 				</span>
-				{title && <h2 className='text text_type_main-large'>{title}</h2>}
+				{title && (
+					<h2 className='text text_type_main-large'>{title}</h2>
+				)}
 				{children}
 			</div>
 		</div>
