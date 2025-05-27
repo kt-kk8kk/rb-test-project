@@ -1,0 +1,10 @@
+.filling_item {
+	display: flex;
+	align-items: center;
+	gap: 0 calc(var(--offset-base-size) * 2);
+	margin-bottom: calc(var(--offset-base-size) * 4);
+}
+
+.filling_item:last-child {
+	margin-bottom: 0;
+}

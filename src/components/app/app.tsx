@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import styles from './app.module.css';
 import { BurgerIngredients } from '@components/burger-ingredients/burger-ingredients';
-import { BurgerConstructor } from '@components/burger-contructor/burger-constructor';
+import { BurgerConstructor } from '@components/burger-constructor/burger-constructor';
 import { AppHeader } from '@components/app-header/app-header';
 import { Preloader } from '@components/preloader/preloader';
 
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState, AppDispatch } from '../../services/store'; // путь к store может отличаться
-import { fetchIngredients } from '../../services/slices/ingredientsSlice';
+import { fetchIngredients } from '../../utils/api/ingredients';
 
 export const App = (): React.JSX.Element => {
 	const dispatch = useDispatch<AppDispatch>();

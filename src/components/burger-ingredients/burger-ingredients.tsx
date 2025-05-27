@@ -10,7 +10,7 @@ import { Modal } from '../modal/modal';
 import { IngredientDetails } from './ingredient-details/ingredient-details';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@services/store';
-import { openModal, closeModal } from '@services/slices/modalSlice';
+import { openModal, closeModal } from '@/services/slices/modal-slice';
 
 export const BurgerIngredients = (): React.JSX.Element => {
 	const dispatch = useDispatch();
@@ -35,6 +35,20 @@ export const BurgerIngredients = (): React.JSX.Element => {
 	const [currentTab, setCurrentTab] = useState<'bun' | 'sauce' | 'main'>(
 		'bun'
 	);
+
+	const { bun, ingredients: constructorIngredients } = useSelector(
+		(state: RootState) => state.burgerConstructor
+	);
+
+	const getCount = (ingredient: TIngredient): number => {
+		if (ingredient.type === 'bun') {
+			return bun?._id === ingredient._id ? 2 : 0;
+		}
+
+		return constructorIngredients.filter(
+			(item) => item._id === ingredient._id
+		).length;
+	};
 
 	const handleClick = (ingredient: TIngredient) => {
 		dispatch(openModal(ingredient));
@@ -137,6 +151,7 @@ export const BurgerIngredients = (): React.JSX.Element => {
 								key={item._id}
 								ingredient={item}
 								onClick={() => handleClick(item)}
+								count={getCount(item)}
 							/>
 						))}
 					</IngredientsGroup>
@@ -150,6 +165,7 @@ export const BurgerIngredients = (): React.JSX.Element => {
 								key={item._id}
 								ingredient={item}
 								onClick={() => handleClick(item)}
+								count={getCount(item)}
 							/>
 						))}
 					</IngredientsGroup>
@@ -163,6 +179,7 @@ export const BurgerIngredients = (): React.JSX.Element => {
 								key={item._id}
 								ingredient={item}
 								onClick={() => handleClick(item)}
+								count={getCount(item)}
 							/>
 						))}
 					</IngredientsGroup>

@@ -1,0 +1,20 @@
+.constructor_placeholder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 536px;
+	min-height: 80px;
+	color: var(--text-primary-color);
+	background: var(--background-element);
+	border-radius: var(--common-border-radius-s);
+}
+
+.top_placeholder {
+	border-radius: var(--top-constructor-item-border-radius);
+}
+
+.bottom_placeholder {
+	border-radius: var(--bottom-constructor-item-border-radius);
+}

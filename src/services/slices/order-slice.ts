@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { createOrder } from '../../utils/api/createOrder'; // путь к файлу, где положишь createOrder
+import { createOrder } from '../../utils/api/create-order';
 
 type TOrderState = {
 	orderNumber: number | null;
@@ -23,7 +23,7 @@ export const createOrderThunk = createAsyncThunk(
 			if (error instanceof Error) {
 				return rejectWithValue(error.message);
 			}
-			return rejectWithValue('Unknown error occurred');
+			return rejectWithValue('Неизвестная ошибка при создании заказа');
 		}
 	}
 );
