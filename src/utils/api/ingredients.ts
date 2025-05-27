@@ -1,24 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { TIngredient } from '@utils/types';
-import { API_URL } from '@utils/constants';
+import { request } from '@utils/request';
 
 export const fetchIngredients = createAsyncThunk(
 	'ingredients/fetchIngredients',
 	async (_, thunkAPI) => {
 		try {
-			const res = await fetch(`${API_URL}/ingredients`);
-			const data = await res.json();
-
-			if (!res.ok) {
-				return thunkAPI.rejectWithValue(
-					data.message || 'Ошибка загрузки ингредиентов'
-				);
-			}
-
-			return data.data as TIngredient[];
+			const data = await request<{ data: TIngredient[] }>('/ingredients');
+			return data.data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue(
-				'Сетевая ошибка при загрузке ингредиентов'
+				(error as Error).message ||
+					'Сетевая ошибка при загрузке ингредиентов'
 			);
 		}
 	}
