@@ -1,8 +1,18 @@
 .burger_constructor {
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	width: 600px;
 	padding-bottom: 20px;
+	color: var(--text-primary-color);
+}
+
+.drop_zone {
+	display: flex;
+	flex-direction: column;
+	width: 600px;
+	min-height: 272px;
+	max-height: calc(100% - 104px);
 	color: var(--text-primary-color);
 }
 
@@ -12,17 +22,6 @@
 	list-style: none;
 }
 
-.fillings li {
-	display: flex;
-	align-items: center;
-	gap: 0 calc(var(--offset-base-size) * 2);
-	margin-bottom: calc(var(--offset-base-size) * 4);
-}
-
-.fillings li:last-child {
-	margin-bottom: 0;
-}
-
 .constructor_footer {
 	display: flex;
 	justify-content: flex-end;
@@ -30,4 +29,8 @@
 	gap: 0 calc(var(--offset-base-size) * 10);
 	width: 100%;
 	max-width: 568px;
+}
+
+.highlight {
+	border: 2px dashed var(--text-inactive-color);
 }
