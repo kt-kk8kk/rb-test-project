@@ -25,7 +25,8 @@ export const ingredients: TIngredient[] = [
 		calories: 2674,
 		price: 3000,
 		image: 'https://code.s3.yandex.net/react/code/meat-04.png',
-		image_mobile: 'https://code.s3.yandex.net/react/code/meat-04-mobile.png',
+		image_mobile:
+			'https://code.s3.yandex.net/react/code/meat-04-mobile.png',
 		image_large: 'https://code.s3.yandex.net/react/code/meat-04-large.png',
 		__v: 0,
 	},
@@ -39,7 +40,8 @@ export const ingredients: TIngredient[] = [
 		calories: 4242,
 		price: 424,
 		image: 'https://code.s3.yandex.net/react/code/meat-01.png',
-		image_mobile: 'https://code.s3.yandex.net/react/code/meat-01-mobile.png',
+		image_mobile:
+			'https://code.s3.yandex.net/react/code/meat-01-mobile.png',
 		image_large: 'https://code.s3.yandex.net/react/code/meat-01-large.png',
 		__v: 0,
 	},
@@ -53,7 +55,8 @@ export const ingredients: TIngredient[] = [
 		calories: 30,
 		price: 90,
 		image: 'https://code.s3.yandex.net/react/code/sauce-02.png',
-		image_mobile: 'https://code.s3.yandex.net/react/code/sauce-02-mobile.png',
+		image_mobile:
+			'https://code.s3.yandex.net/react/code/sauce-02-mobile.png',
 		image_large: 'https://code.s3.yandex.net/react/code/sauce-02-large.png',
 		__v: 0,
 	},
@@ -67,7 +70,8 @@ export const ingredients: TIngredient[] = [
 		calories: 420,
 		price: 1337,
 		image: 'https://code.s3.yandex.net/react/code/meat-02.png',
-		image_mobile: 'https://code.s3.yandex.net/react/code/meat-02-mobile.png',
+		image_mobile:
+			'https://code.s3.yandex.net/react/code/meat-02-mobile.png',
 		image_large: 'https://code.s3.yandex.net/react/code/meat-02-large.png',
 		__v: 0,
 	},
@@ -81,7 +85,8 @@ export const ingredients: TIngredient[] = [
 		calories: 99,
 		price: 15,
 		image: 'https://code.s3.yandex.net/react/code/sauce-03.png',
-		image_mobile: 'https://code.s3.yandex.net/react/code/sauce-03-mobile.png',
+		image_mobile:
+			'https://code.s3.yandex.net/react/code/sauce-03-mobile.png',
 		image_large: 'https://code.s3.yandex.net/react/code/sauce-03-large.png',
 		__v: 0,
 	},
@@ -95,7 +100,8 @@ export const ingredients: TIngredient[] = [
 		calories: 14,
 		price: 80,
 		image: 'https://code.s3.yandex.net/react/code/sauce-04.png',
-		image_mobile: 'https://code.s3.yandex.net/react/code/sauce-04-mobile.png',
+		image_mobile:
+			'https://code.s3.yandex.net/react/code/sauce-04-mobile.png',
 		image_large: 'https://code.s3.yandex.net/react/code/sauce-04-large.png',
 		__v: 0,
 	},
@@ -139,7 +145,8 @@ export const ingredients: TIngredient[] = [
 		calories: 100,
 		price: 88,
 		image: 'https://code.s3.yandex.net/react/code/sauce-01.png',
-		image_mobile: 'https://code.s3.yandex.net/react/code/sauce-01-mobile.png',
+		image_mobile:
+			'https://code.s3.yandex.net/react/code/sauce-01-mobile.png',
 		image_large: 'https://code.s3.yandex.net/react/code/sauce-01-large.png',
 		__v: 0,
 	},
@@ -181,7 +188,8 @@ export const ingredients: TIngredient[] = [
 		calories: 643,
 		price: 988,
 		image: 'https://code.s3.yandex.net/react/code/meat-03.png',
-		image_mobile: 'https://code.s3.yandex.net/react/code/meat-03-mobile.png',
+		image_mobile:
+			'https://code.s3.yandex.net/react/code/meat-03-mobile.png',
 		image_large: 'https://code.s3.yandex.net/react/code/meat-03-large.png',
 		__v: 0,
 	},

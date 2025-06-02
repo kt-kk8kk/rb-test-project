@@ -1,31 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { API_URL } from '@utils/constants';
-import { TIngredient } from '@utils/types';
+import React, { useEffect } from 'react';
 import styles from './app.module.css';
 import { BurgerIngredients } from '@components/burger-ingredients/burger-ingredients';
-import { BurgerConstructor } from '@components/burger-contructor/burger-constructor';
+import { BurgerConstructor } from '@components/burger-constructor/burger-constructor';
 import { AppHeader } from '@components/app-header/app-header';
 import { Preloader } from '@components/preloader/preloader';
 
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState, AppDispatch } from '../../services/store'; // путь к store может отличаться
+import { fetchIngredients } from '../../utils/api/ingredients';
+
 export const App = (): React.JSX.Element => {
-	const [ingredients, setIngredients] = useState<TIngredient[]>([]);
-	const [error, setError] = useState<string | null>(null);
+	const dispatch = useDispatch<AppDispatch>();
+
+	const ingredients = useSelector(
+		(state: RootState) => state.ingredients.items
+	);
+	const isLoading = useSelector(
+		(state: RootState) => state.ingredients.loading
+	);
+	const error = useSelector((state: RootState) => state.ingredients.error);
 
 	useEffect(() => {
-		fetch(`${API_URL}/ingredients`)
-			.then((res) => {
-				if (!res.ok) throw new Error('Ошибка при получении ингредиентов');
-				return res.json();
-			})
-			.then((data) => setIngredients(data.data))
-			.catch((err) => {
-				console.error('Fetch error:', err);
-				setError('Не удалось загрузить ингредиенты');
-			});
-	}, []);
+		dispatch(fetchIngredients());
+	}, [dispatch]);
 
 	if (error) return <div>{error}</div>;
-	if (!ingredients.length) return <Preloader />;
+	if (isLoading || !ingredients.length) return <Preloader />;
 
 	return (
 		<div className={styles.app}>
@@ -35,11 +35,9 @@ export const App = (): React.JSX.Element => {
 				Соберите бургер
 			</h1>
 			<main className={`${styles.main} pl-5 pr-5`}>
-				<BurgerIngredients ingredients={ingredients} />
-				<BurgerConstructor ingredients={ingredients} />
+				<BurgerIngredients />
+				<BurgerConstructor />
 			</main>
 		</div>
 	);
 };
-
-export default App;
