@@ -6,20 +6,12 @@ import { BurgerScroll } from '../burger-scroll/burger-scroll';
 import { IngredientsGroupTitle } from './ingredients-group-title/ingredients-group-title';
 import { IngredientsGroup } from './ingredients-group/ingredients-group';
 import { IngredientItem } from './ingredient-item/ingredient-item';
-import { Modal } from '../modal/modal';
-import { IngredientDetails } from './ingredient-details/ingredient-details';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '@services/store';
-import { openModal, closeModal } from '@/services/slices/modal-slice';
 
 export const BurgerIngredients = (): React.JSX.Element => {
-	const dispatch = useDispatch();
-
 	const ingredients = useSelector(
 		(state: RootState) => state.ingredients.items
-	);
-	const selectedIngredient = useSelector(
-		(state: RootState) => state.modal.ingredient
 	);
 
 	const buns = ingredients.filter((item) => item.type === 'bun');
@@ -48,10 +40,6 @@ export const BurgerIngredients = (): React.JSX.Element => {
 		return constructorIngredients.filter(
 			(item) => item._id === ingredient._id
 		).length;
-	};
-
-	const handleClick = (ingredient: TIngredient) => {
-		dispatch(openModal(ingredient));
 	};
 
 	const handleScroll = () => {
@@ -150,7 +138,6 @@ export const BurgerIngredients = (): React.JSX.Element => {
 							<IngredientItem
 								key={item._id}
 								ingredient={item}
-								onClick={() => handleClick(item)}
 								count={getCount(item)}
 							/>
 						))}
@@ -164,7 +151,6 @@ export const BurgerIngredients = (): React.JSX.Element => {
 							<IngredientItem
 								key={item._id}
 								ingredient={item}
-								onClick={() => handleClick(item)}
 								count={getCount(item)}
 							/>
 						))}
@@ -178,21 +164,12 @@ export const BurgerIngredients = (): React.JSX.Element => {
 							<IngredientItem
 								key={item._id}
 								ingredient={item}
-								onClick={() => handleClick(item)}
 								count={getCount(item)}
 							/>
 						))}
 					</IngredientsGroup>
 				</div>
 			</BurgerScroll>
-
-			{selectedIngredient && (
-				<Modal
-					title='Детали ингредиента'
-					onClose={() => dispatch(closeModal())}>
-					<IngredientDetails ingredient={selectedIngredient} />
-				</Modal>
-			)}
 		</section>
 	);
 };

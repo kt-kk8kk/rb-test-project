@@ -1,4 +1,7 @@
 .ingredient_details {
+	margin: 0 auto;
+	color: var(--text-primary-color);
+	font-family: 'Jet Brains Mono', serif;
 	text-align: center;
 }
 

@@ -5,18 +5,16 @@ import {
 	CurrencyIcon,
 	Counter,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-
 import { useDrag } from 'react-dnd';
+import { Link, useLocation } from 'react-router-dom';
 
 type TIngredientItemProps = {
 	ingredient: TIngredient;
-	onClick: (ingredient: TIngredient) => void;
 	count?: number;
 };
 
 export const IngredientItem = ({
 	ingredient,
-	onClick,
 	count = 0,
 }: TIngredientItemProps): React.JSX.Element => {
 	const [{ isDragging }, dragRef] = useDrag({
@@ -27,14 +25,18 @@ export const IngredientItem = ({
 		}),
 	});
 
+	const location = useLocation();
+	const ingredientId = ingredient._id;
+
 	return (
 		<li
 			ref={dragRef}
 			className={`${styles.item} mb-10`}
 			style={{ opacity: isDragging ? 0.5 : 1 }}>
-			<button
-				className={styles.item_btn}
-				onClick={() => onClick(ingredient)}>
+			<Link
+				to={`/ingredients/${ingredientId}`}
+				state={{ background: location }}
+				className={styles.item_btn}>
 				{count > 0 && <Counter count={count} size='default' />}
 				<div className={`${styles.img_wrap} mb-1`}>
 					<img
@@ -54,7 +56,7 @@ export const IngredientItem = ({
 				<div className={'text text_type_main-default pb-6'}>
 					{ingredient.name}
 				</div>
-			</button>
+			</Link>
 		</li>
 	);
 };
