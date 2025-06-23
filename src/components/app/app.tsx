@@ -22,6 +22,7 @@ import { IngredientDetailsPage } from '@pages/ingredient-details/ingredient-deta
 import { IngredientDetails } from '@components/burger-ingredients/ingredient-details/ingredient-details';
 import { Modal } from '@components/modal/modal';
 import { ROUTES } from '@utils/routes';
+import { fetchIngredients } from '@utils/api/ingredients';
 import { OnlyAuth, OnlyUnAuth } from '@/components/protected-route';
 import { fetchUser } from '@services/slices/user-slice';
 
@@ -33,6 +34,7 @@ function AppRoutes() {
 
 	useEffect(() => {
 		dispatch(fetchUser());
+		dispatch(fetchIngredients());
 	}, [dispatch]);
 
 	const handleModalClose = () => navigate(-1);

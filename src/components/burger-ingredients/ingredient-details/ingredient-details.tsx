@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './ingredient-details.module.css';
 import { Preloader } from '@components/preloader/preloader';
 import { ErrorMessage } from '@components/error-message/error-message';
 import { TIngredient } from '@utils/types.ts';
 import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from '@services/store';
-import { fetchIngredients } from '@utils/api/ingredients';
+import { useSelector } from 'react-redux';
+import { RootState } from '@services/store';
 
 type IngredientDetailsProps = {
 	ingredient?: TIngredient;
@@ -15,19 +14,11 @@ type IngredientDetailsProps = {
 export const IngredientDetails = ({
 	ingredient: propIngredient,
 }: IngredientDetailsProps): React.JSX.Element | null => {
-	const dispatch = useDispatch<AppDispatch>();
-
 	const { ingredientId } = useParams<{ ingredientId: string }>();
 
 	const { items, loading, error } = useSelector(
 		(state: RootState) => state.ingredients
 	);
-
-	useEffect(() => {
-		if (items.length === 0) {
-			dispatch(fetchIngredients());
-		}
-	}, [dispatch, items.length]);
 
 	const ingredient =
 		propIngredient || items.find((item) => item._id === ingredientId);

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './app-header.module.css';
 import {
 	BurgerIcon,
@@ -9,6 +9,9 @@ import {
 import { ROUTES } from '@utils/routes';
 
 export const AppHeader = () => {
+	const location = useLocation();
+	const isHomePage = location.pathname === ROUTES.HOME;
+
 	return (
 		<header className={styles.header}>
 			<nav className={`${styles.menu} p-4`}>
@@ -48,7 +51,13 @@ export const AppHeader = () => {
 					</NavLink>
 				</div>
 				<div className={styles.logo}>
-					<Logo />
+					{isHomePage ? (
+						<Logo />
+					) : (
+						<NavLink to={ROUTES.HOME} className={styles.logo_link}>
+							<Logo />
+						</NavLink>
+					)}
 				</div>
 				<NavLink
 					to={ROUTES.PROFILE}

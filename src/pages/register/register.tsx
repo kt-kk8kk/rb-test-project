@@ -11,14 +11,23 @@ import { ROUTES } from '@utils/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState, AppDispatch } from '@services/store';
 import { register, resetError } from '@services/slices/user-slice';
+import { useForm } from '@/hooks/use-form';
+
+export type TRegisterRequest = {
+	name: string;
+	email: string;
+	password: string;
+};
 
 export const RegisterPage = (): React.JSX.Element => {
 	const dispatch = useDispatch<AppDispatch>();
 	const { isLoading, error } = useSelector((state: RootState) => state.user);
 
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const { values, handleChange } = useForm<TRegisterRequest>({
+		name: '',
+		email: '',
+		password: '',
+	});
 	const [showPassword, setShowPassword] = useState(false);
 
 	const nameRef = useRef<HTMLInputElement>(null);
@@ -36,7 +45,7 @@ export const RegisterPage = (): React.JSX.Element => {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		dispatch(register({ name, email, password }));
+		dispatch(register(values));
 	};
 
 	return (
@@ -45,8 +54,8 @@ export const RegisterPage = (): React.JSX.Element => {
 				type={'text'}
 				placeholder={'Имя'}
 				name={'name'}
-				value={name || ''}
-				onChange={(e) => setName(e.target.value)}
+				value={values.name}
+				onChange={handleChange}
 				error={false}
 				errorText={'Ошибка'}
 				size={'default'}
@@ -57,8 +66,8 @@ export const RegisterPage = (): React.JSX.Element => {
 				type={'text'}
 				placeholder={'E-mail'}
 				name={'email'}
-				value={email || ''}
-				onChange={(e) => setEmail(e.target.value)}
+				value={values.email}
+				onChange={handleChange}
 				error={false}
 				errorText={'Ошибка'}
 				size={'default'}
@@ -69,8 +78,8 @@ export const RegisterPage = (): React.JSX.Element => {
 				type={showPassword ? 'text' : 'password'}
 				placeholder={'Пароль'}
 				name={'password'}
-				value={password || ''}
-				onChange={(e) => setPassword(e.target.value)}
+				value={values.password}
+				onChange={handleChange}
 				error={false}
 				errorText={'Ошибка'}
 				size={'default'}

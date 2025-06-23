@@ -17,7 +17,10 @@ import Graphics from '../../images/graphics.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { store, RootState } from '@services/store';
-import { addIngredient } from '@/services/slices/burger-constructor-slice';
+import {
+	addIngredient,
+	clearConstructor,
+} from '@/services/slices/burger-constructor-slice';
 import { createOrderThunk, clearOrder } from '@/services/slices/order-slice';
 import { openModal, closeModal } from '@/services/slices/modal-slice';
 import { ROUTES } from '@utils/routes';
@@ -91,6 +94,7 @@ export const BurgerConstructor = (): React.JSX.Element => {
 
 		try {
 			await dispatch(createOrderThunk(ingredientIds)).unwrap();
+			dispatch(clearConstructor());
 		} catch (error) {
 			alert('Ошибка при оформлении заказа');
 		}
@@ -189,7 +193,7 @@ export const BurgerConstructor = (): React.JSX.Element => {
 					type='primary'
 					size='large'
 					onClick={handleOrder}
-					disabled={loading}>
+					disabled={!bun || loading}>
 					{loading ? 'Оформление...' : 'Оформить заказ'}
 				</Button>
 			</footer>

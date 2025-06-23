@@ -36,3 +36,8 @@
 	align-items: center;
 	margin: 0 auto;
 }
+
+.logo_link {
+	display: block;
+	height: 50px;
+}

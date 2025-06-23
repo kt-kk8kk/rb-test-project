@@ -12,6 +12,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import type { RootState, AppDispatch } from '@services/store';
 import { login, resetError } from '@services/slices/user-slice';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useForm } from '@/hooks/use-form';
+
+export type TLoginRequest = {
+	email: string;
+	password: string;
+};
 
 export const LoginPage = (): React.JSX.Element => {
 	const navigate = useNavigate();
@@ -20,8 +26,10 @@ export const LoginPage = (): React.JSX.Element => {
 	const dispatch = useDispatch<AppDispatch>();
 	const { isLoading, error } = useSelector((state: RootState) => state.user);
 
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const { values, handleChange, setValues } = useForm<TLoginRequest>({
+		email: '',
+		password: '',
+	});
 	const [showPassword, setShowPassword] = useState(false);
 
 	const emailRef = useRef<HTMLInputElement>(null);
@@ -41,10 +49,11 @@ export const LoginPage = (): React.JSX.Element => {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		dispatch(login({ email, password }))
+		dispatch(login({ email: values.email, password: values.password }))
 			.unwrap()
 			.then(() => {
 				navigate(from, { replace: true });
+				setValues({ email: '', password: '' });
 			})
 			.catch((err) => {
 				console.error('Ошибка входа:', err);
@@ -57,8 +66,8 @@ export const LoginPage = (): React.JSX.Element => {
 				type={'email'}
 				placeholder={'E-mail'}
 				name={'email'}
-				value={email || ''}
-				onChange={(e) => setEmail(e.target.value)}
+				value={values.email}
+				onChange={handleChange}
 				error={false}
 				errorText={'Ошибка'}
 				size={'default'}
@@ -69,8 +78,8 @@ export const LoginPage = (): React.JSX.Element => {
 				type={showPassword ? 'text' : 'password'}
 				placeholder={'Пароль'}
 				name={'password'}
-				value={password || ''}
-				onChange={(e) => setPassword(e.target.value)}
+				value={values.password}
+				onChange={handleChange}
 				error={false}
 				errorText={'Ошибка'}
 				size={'default'}
