@@ -1,0 +1,9 @@
+.form_container {
+	max-width: 480px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.form_title {
+	text-align: center;
+}

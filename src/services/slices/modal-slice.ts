@@ -1,23 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TIngredient } from '@utils/types';
+
+export type TModalType = 'order' | null;
 
 type TModalState = {
-	ingredient: TIngredient | null;
+	openModalType: TModalType;
 };
 
 const initialState: TModalState = {
-	ingredient: null,
+	openModalType: null,
 };
 
 export const modalSlice = createSlice({
 	name: 'modal',
 	initialState,
 	reducers: {
-		openModal: (state, action: PayloadAction<TIngredient>) => {
-			state.ingredient = action.payload;
+		openModal: (state, action: PayloadAction<TModalType>) => {
+			state.openModalType = action.payload;
 		},
 		closeModal: (state) => {
-			state.ingredient = null;
+			state.openModalType = null;
 		},
 	},
 });

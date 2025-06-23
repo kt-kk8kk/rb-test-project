@@ -10,18 +10,27 @@ import { Modal } from '../modal/modal';
 import { OrderDetails } from './order-details/order-details';
 import { DraggableIngredient } from './draggable-ingredient/draggable-ingredient';
 import { ConstructorPlaceholder } from './constructor-placeholder/constructor-placeholder';
+import { ErrorMessage } from '@components/error-message/error-message';
+import { Preloader } from '@components/preloader/preloader';
 import { TIngredient } from '@utils/types.ts';
 import Graphics from '../../images/graphics.png';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { store, RootState } from '@services/store';
-import { addIngredient } from '@/services/slices/burger-constructor-slice';
+import {
+	addIngredient,
+	clearConstructor,
+} from '@/services/slices/burger-constructor-slice';
 import { createOrderThunk, clearOrder } from '@/services/slices/order-slice';
+import { openModal, closeModal } from '@/services/slices/modal-slice';
+import { ROUTES } from '@utils/routes';
+import { useNavigate } from 'react-router-dom';
 
 export type AppDispatch = typeof store.dispatch;
 
 export const BurgerConstructor = (): React.JSX.Element => {
 	const dispatch = useDispatch<AppDispatch>();
+	const navigate = useNavigate();
 
 	const bun = useSelector((state: RootState) => state.burgerConstructor.bun);
 	const ingredients = useSelector(
@@ -32,7 +41,10 @@ export const BurgerConstructor = (): React.JSX.Element => {
 	const [highlightTopBottom, setHighlightTopBottom] = useState(false);
 	const [highlightFillings, setHighlightFillings] = useState(false);
 
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const openModalType = useSelector(
+		(state: RootState) => state.modal.openModalType
+	);
+	const isModalOpen = openModalType === 'order';
 
 	const orderNumber = useSelector(
 		(state: RootState) => state.order.orderNumber
@@ -70,11 +82,19 @@ export const BurgerConstructor = (): React.JSX.Element => {
 			return;
 		}
 
+		const accessToken = localStorage.getItem('accessToken');
+		if (!accessToken) {
+			navigate(ROUTES.LOGIN, { state: { from: '/' } });
+			return;
+		}
+
 		const ingredientIds = [bun._id, ...fillings.map((i) => i._id), bun._id];
+
+		dispatch(openModal('order'));
 
 		try {
 			await dispatch(createOrderThunk(ingredientIds)).unwrap();
-			setIsModalOpen(true);
+			dispatch(clearConstructor());
 		} catch (error) {
 			alert('Ошибка при оформлении заказа');
 		}
@@ -173,7 +193,7 @@ export const BurgerConstructor = (): React.JSX.Element => {
 					type='primary'
 					size='large'
 					onClick={handleOrder}
-					disabled={loading}>
+					disabled={!bun || loading}>
 					{loading ? 'Оформление...' : 'Оформить заказ'}
 				</Button>
 			</footer>
@@ -181,13 +201,22 @@ export const BurgerConstructor = (): React.JSX.Element => {
 			{isModalOpen && (
 				<Modal
 					onClose={() => {
-						setIsModalOpen(false);
+						dispatch(closeModal());
 						dispatch(clearOrder());
-					}}>
-					{error ? (
-						<div className='text text_type_main-medium text_color_error'>
-							Ошибка: {error}
+					}}
+					title={
+						loading
+							? 'Создание заказа...'
+							: error
+								? 'Ошибка'
+								: undefined
+					}>
+					{loading ? (
+						<div className='mt-10'>
+							<Preloader />
 						</div>
+					) : error ? (
+						<ErrorMessage error={error} />
 					) : (
 						<OrderDetails
 							digits={orderNumber ?? 0}

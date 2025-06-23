@@ -1,0 +1,13 @@
+.not_found {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	color: var(--text-primary-color);
+	font-family: 'Jet Brains Mono', serif;
+	background-color: var(--background-alt);
+}
+
+.not_found_inner {
+	text-align: center;
+}
