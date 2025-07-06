@@ -24,3 +24,13 @@
 		'@utils': path.resolve(__dirname, './src/utils'),
 	},
 ```
+
+## Создание Pull Request
+
+1. Создать новую ветку от `main`: `git checkout -b new-branch-name`.
+
+2. После завершения работы сделать коммит: `npm run commit`.
+
+3. Отправить ветку на GitHub: `git push origin new-branch-name`.
+
+4. Открыть Pull Request на GitHub и отправить ссылку на него в Практикум на проверку.
