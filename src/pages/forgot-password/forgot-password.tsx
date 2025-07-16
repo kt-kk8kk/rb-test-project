@@ -8,20 +8,20 @@ import { FormHint } from '@components/form-container/form-hint/form-hint';
 import { FormActions } from '@components/form-container/form-actions/form-actions';
 import { ErrorMessage } from '@components/error-message/error-message';
 import { ROUTES } from '@utils/routes';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@hooks/use-redux-hooks';
 import { useNavigate } from 'react-router-dom';
 import { setCanResetPassword } from '@services/slices/user-slice';
 import {
 	forgotPassword,
 	resetForgotPasswordState,
 } from '@services/slices/forgot-password-slice';
-import type { RootState, AppDispatch } from '@services/store';
+import type { RootState } from '@services/store';
 
 export const ForgotPasswordPage = (): React.JSX.Element => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	const { isLoading, error, success } = useSelector(
+	const { isLoading, error, success } = useAppSelector(
 		(state: RootState) => state.forgotPassword
 	);
 

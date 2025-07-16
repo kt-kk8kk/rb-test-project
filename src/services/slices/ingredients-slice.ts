@@ -1,15 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TIngredient } from '@utils/types';
 import { fetchIngredients } from '@utils/api/ingredients';
 
 type TIngredientsState = {
 	items: TIngredient[];
+	byId: Record<string, TIngredient>;
 	loading: boolean;
 	error: string | null;
 };
 
 const initialState: TIngredientsState = {
 	items: [],
+	byId: {},
 	loading: false,
 	error: null,
 };
@@ -24,10 +26,19 @@ export const ingredientsSlice = createSlice({
 				state.loading = true;
 				state.error = null;
 			})
-			.addCase(fetchIngredients.fulfilled, (state, action) => {
-				state.loading = false;
-				state.items = action.payload;
-			})
+			.addCase(
+				fetchIngredients.fulfilled,
+				(state, action: PayloadAction<TIngredient[]>) => {
+					state.loading = false;
+					state.items = action.payload;
+					state.byId = action.payload.reduce<
+						Record<string, TIngredient>
+					>((map, ing) => {
+						map[ing._id] = ing;
+						return map;
+					}, {});
+				}
+			)
 			.addCase(fetchIngredients.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.payload as string;

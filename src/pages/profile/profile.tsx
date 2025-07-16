@@ -4,18 +4,17 @@ import {
 	Button,
 	Input,
 } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@hooks/use-redux-hooks';
 import {
 	getUser as getUserSelector,
 	fetchUser,
 	patchUser,
 } from '@services/slices/user-slice';
-import { AppDispatch } from '@services/store';
 import { FormContainer } from '@components/form-container/form-container';
 
 export const ProfilePage = (): React.JSX.Element => {
-	const dispatch = useDispatch<AppDispatch>();
-	const user = useSelector(getUserSelector);
+	const dispatch = useAppDispatch();
+	const user = useAppSelector(getUserSelector);
 
 	const [formData, setFormData] = useState({
 		name: '',

@@ -4,8 +4,8 @@ import { Preloader } from '@components/preloader/preloader';
 import { ErrorMessage } from '@components/error-message/error-message';
 import { TIngredient } from '@utils/types.ts';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '@services/store';
+import { useAppSelector } from '@hooks/use-redux-hooks';
+import { RootState } from '@services/root-reducer';
 
 type IngredientDetailsProps = {
 	ingredient?: TIngredient;
@@ -16,7 +16,7 @@ export const IngredientDetails = ({
 }: IngredientDetailsProps): React.JSX.Element | null => {
 	const { ingredientId } = useParams<{ ingredientId: string }>();
 
-	const { items, loading, error } = useSelector(
+	const { items, loading, error } = useAppSelector(
 		(state: RootState) => state.ingredients
 	);
 

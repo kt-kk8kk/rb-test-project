@@ -1,0 +1,10 @@
+.stats_group {
+	display: flex;
+	align-items: flex-start;
+	gap: 0 calc(var(--offset-base-size) * 9);
+	margin: 0 0 calc(var(--offset-base-size) * 15);
+}
+
+.stats_group:last-child {
+	margin: 0;
+}
