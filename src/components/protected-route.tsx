@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '@hooks/use-redux-hooks';
 import { Navigate, useLocation } from 'react-router-dom';
 import { getIsAuthChecked, getUser } from '@services/slices/user-slice';
 import { ROUTES } from '@utils/routes';
@@ -13,8 +13,8 @@ const Protected: React.FC<ProtectedProps> = ({
 	onlyUnAuth = false,
 	component,
 }) => {
-	const isAuthChecked = useSelector(getIsAuthChecked);
-	const user = useSelector(getUser);
+	const isAuthChecked = useAppSelector(getIsAuthChecked);
+	const user = useAppSelector(getUser);
 	const location = useLocation();
 
 	if (!isAuthChecked) {

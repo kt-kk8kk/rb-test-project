@@ -6,11 +6,11 @@ import { BurgerScroll } from '../burger-scroll/burger-scroll';
 import { IngredientsGroupTitle } from './ingredients-group-title/ingredients-group-title';
 import { IngredientsGroup } from './ingredients-group/ingredients-group';
 import { IngredientItem } from './ingredient-item/ingredient-item';
-import { useSelector } from 'react-redux';
-import { RootState } from '@services/store';
+import { useAppSelector } from '@hooks/use-redux-hooks';
+import { RootState } from '@services/root-reducer';
 
 export const BurgerIngredients = (): React.JSX.Element => {
-	const ingredients = useSelector(
+	const ingredients = useAppSelector(
 		(state: RootState) => state.ingredients.items
 	);
 
@@ -28,7 +28,7 @@ export const BurgerIngredients = (): React.JSX.Element => {
 		'bun'
 	);
 
-	const { bun, ingredients: constructorIngredients } = useSelector(
+	const { bun, ingredients: constructorIngredients } = useAppSelector(
 		(state: RootState) => state.burgerConstructor
 	);
 

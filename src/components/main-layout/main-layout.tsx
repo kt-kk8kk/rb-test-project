@@ -7,23 +7,23 @@ import { ROUTES } from '@utils/routes';
 export const MainLayout = (): React.JSX.Element => {
 	const location = useLocation();
 
-	const renderHeaderContent = () => {
-		if (location.pathname === ROUTES.HOME) {
-			return (
-				<h1
-					className={`${styles.title} text text_type_main-large mt-10 mb-5 pl-5`}>
-					Соберите бургер
-				</h1>
-			);
-		}
-		return null;
+	const titles: Record<string, string> = {
+		[ROUTES.HOME]: 'Соберите бургер',
+		[ROUTES.FEED]: 'Лента заказов',
 	};
+
+	const headerTitle = titles[location.pathname];
 
 	return (
 		<div className={styles.app}>
 			<AppHeader />
 
-			{renderHeaderContent()}
+			{headerTitle && (
+				<h1
+					className={`${styles.title} text text_type_main-large mt-10 mb-5 pl-5`}>
+					{headerTitle}
+				</h1>
+			)}
 
 			<main className={`${styles.main} pl-5 pr-5`}>
 				<Outlet />

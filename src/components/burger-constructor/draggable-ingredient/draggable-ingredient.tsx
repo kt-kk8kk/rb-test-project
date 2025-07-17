@@ -5,7 +5,7 @@ import {
 	DragIcon,
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDrag, useDrop, DropTargetMonitor, XYCoord } from 'react-dnd';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '@hooks/use-redux-hooks';
 import {
 	removeIngredient,
 	moveIngredient,
@@ -25,7 +25,7 @@ export const DraggableIngredient: React.FC<DraggableIngredientProps> = ({
 	ingredient,
 	index,
 }) => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const ref = useRef<HTMLLIElement>(null);
 
 	const [{ isDragging }, drag] = useDrag({

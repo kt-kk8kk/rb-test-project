@@ -2,13 +2,12 @@ import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './profile-layout.module.css';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '@hooks/use-redux-hooks';
 import { logout } from '@services/slices/user-slice';
 import { ROUTES } from '@utils/routes';
-import { AppDispatch } from '@services/store';
 
 export const ProfileLayout = (): React.JSX.Element => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
 	const handleLogout = async () => {

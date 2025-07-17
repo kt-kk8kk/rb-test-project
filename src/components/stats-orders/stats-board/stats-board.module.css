@@ -1,0 +1,25 @@
+.stats_board {
+	flex-grow: 1;
+	width: 50%;
+}
+
+.stats_board_list {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	columns: 2;
+	column-gap: calc(var(--offset-base-size) * 8);
+	list-style: none;
+}
+
+.stats_board_link {
+	text-decoration: none;
+}
+
+.stats_board_link.done {
+	color: var(--colors-interface-success);
+}
+
+.stats_board_link.pending {
+	color: var(--text-primary-color);
+}

@@ -6,5 +6,8 @@ export const ROUTES = {
 	RESET_PASSWORD: '/reset-password',
 	INGREDIENT: '/ingredients/:ingredientId',
 	PROFILE: '/profile',
-	PROFILE_ORDERS: 'orders', // relative path inside /profile
+	PROFILE_ORDERS: '/profile/orders',
+	PROFILE_ORDER: '/profile/orders/:id',
+	FEED: '/feed',
+	FEED_ORDER: '/feed/:id',
 } as const;

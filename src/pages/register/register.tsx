@@ -8,8 +8,8 @@ import { FormHint } from '@components/form-container/form-hint/form-hint';
 import { FormActions } from '@components/form-container/form-actions/form-actions';
 import { ErrorMessage } from '@components/error-message/error-message';
 import { ROUTES } from '@utils/routes';
-import { useDispatch, useSelector } from 'react-redux';
-import type { RootState, AppDispatch } from '@services/store';
+import { useAppDispatch, useAppSelector } from '@hooks/use-redux-hooks';
+import type { RootState } from '@services/store';
 import { register, resetError } from '@services/slices/user-slice';
 import { useForm } from '@/hooks/use-form';
 
@@ -20,8 +20,10 @@ export type TRegisterRequest = {
 };
 
 export const RegisterPage = (): React.JSX.Element => {
-	const dispatch = useDispatch<AppDispatch>();
-	const { isLoading, error } = useSelector((state: RootState) => state.user);
+	const dispatch = useAppDispatch();
+	const { isLoading, error } = useAppSelector(
+		(state: RootState) => state.user
+	);
 
 	const { values, handleChange } = useForm<TRegisterRequest>({
 		name: '',

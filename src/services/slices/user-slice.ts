@@ -3,7 +3,7 @@ import { registerUser } from '@utils/api/register-user';
 import { loginUser } from '@utils/api/login-user';
 import { logoutUser } from '@utils/api/logout-user';
 import { getUser as getUserApi, updateUser } from '@utils/api/user';
-import { RootState } from '@services/store';
+import { RootState } from '@services/root-reducer';
 
 interface TUser {
 	email: string;

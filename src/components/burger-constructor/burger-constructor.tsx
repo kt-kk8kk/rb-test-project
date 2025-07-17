@@ -14,9 +14,10 @@ import { ErrorMessage } from '@components/error-message/error-message';
 import { Preloader } from '@components/preloader/preloader';
 import { TIngredient } from '@utils/types.ts';
 import Graphics from '../../images/graphics.png';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '@hooks/use-redux-hooks';
 import { useDrop } from 'react-dnd';
-import { store, RootState } from '@services/store';
+import { store } from '@services/store';
+import { RootState } from '@services/root-reducer';
 import {
 	addIngredient,
 	clearConstructor,
@@ -29,11 +30,11 @@ import { useNavigate } from 'react-router-dom';
 export type AppDispatch = typeof store.dispatch;
 
 export const BurgerConstructor = (): React.JSX.Element => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	const bun = useSelector((state: RootState) => state.burgerConstructor.bun);
-	const ingredients = useSelector(
+	const bun = useAppSelector((state) => state.burgerConstructor.bun);
+	const ingredients = useAppSelector(
 		(state: RootState) => state.burgerConstructor.ingredients
 	);
 	const fillings = (ingredients ?? []).filter((item) => item.type !== 'bun');
@@ -41,16 +42,16 @@ export const BurgerConstructor = (): React.JSX.Element => {
 	const [highlightTopBottom, setHighlightTopBottom] = useState(false);
 	const [highlightFillings, setHighlightFillings] = useState(false);
 
-	const openModalType = useSelector(
+	const openModalType = useAppSelector(
 		(state: RootState) => state.modal.openModalType
 	);
 	const isModalOpen = openModalType === 'order';
 
-	const orderNumber = useSelector(
+	const orderNumber = useAppSelector(
 		(state: RootState) => state.order.orderNumber
 	);
-	const loading = useSelector((state: RootState) => state.order.loading);
-	const error = useSelector((state: RootState) => state.order.error);
+	const loading = useAppSelector((state: RootState) => state.order.loading);
+	const error = useAppSelector((state: RootState) => state.order.error);
 
 	const [{ isOver, draggedType }, dropRef] = useDrop<
 		TIngredient,
