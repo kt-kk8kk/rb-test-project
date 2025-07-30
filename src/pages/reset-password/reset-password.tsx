@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from '@hooks/use-redux-hooks';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { resetPassword } from '@services/slices/forgot-password-slice';
 import { getCanResetPassword } from '@services/slices/user-slice';
-import type { RootState } from '@services/store';
+import type { RootState } from '@services/root-reducer';
 
 export const ResetPasswordPage = (): React.JSX.Element => {
 	const dispatch = useAppDispatch();

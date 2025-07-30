@@ -1,10 +1,10 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './modal.module.css';
 import { ModalOverlay } from './modal-overlay/modal-overlay';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
-type TModalProps = {
+type TModalProps = HTMLAttributes<HTMLDivElement> & {
 	title?: string;
 	children: ReactNode;
 	onClose: () => void;
@@ -16,6 +16,7 @@ export const Modal = ({
 	title,
 	children,
 	onClose,
+	...rest
 }: TModalProps): React.JSX.Element => {
 	useEffect(() => {
 		const handleEsc = (e: KeyboardEvent) => {
@@ -28,10 +29,10 @@ export const Modal = ({
 	}, [onClose]);
 
 	const modalContent = (
-		<div className={styles.modal_wrap}>
+		<div className={styles.modal_wrap} {...rest}>
 			<ModalOverlay onClick={onClose} />
 			<div className={styles.modal}>
-				<span className={styles.modal_closer}>
+				<span className={styles.modal_closer} data-testid='modal-close'>
 					<CloseIcon type='primary' onClick={onClose} />
 				</span>
 				{title && (

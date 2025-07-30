@@ -1,0 +1,33 @@
+{
+	"success": true,
+	"name": "Space флюоресцентный бургер",
+	"order": {
+		"_id": "6888aef5d5ca30001cffc6b7",
+		"number": 4242,
+		"createdAt": "2025-07-29T11:22:29.426Z",
+		"updatedAt": "2025-07-29T11:22:30.339Z",
+		"owner": {
+			"name": "Test User",
+			"email": "test@test.com",
+			"createdAt": "2025-01-01T00:00:00.000Z"
+		},
+		"ingredients": [
+			{
+				"_id": "bun-1",
+				"name": "Классическая булка",
+				"type": "bun",
+				"proteins": 10,
+				"fat": 20,
+				"carbohydrates": 30,
+				"calories": 200,
+				"price": 100,
+				"image": "/img/bun.png",
+				"image_large": "/img/bun.png",
+				"image_mobile": "/img/bun.png",
+				"__v": 0
+			}
+		],
+		"status": "done",
+		"price": 2056
+	}
+}

@@ -103,6 +103,7 @@ function AppRoutes() {
 						path={ROUTES.INGREDIENT}
 						element={
 							<Modal
+								data-testid='modal-ingredient'
 								title='Детали ингредиента'
 								onClose={handleModalClose}>
 								<IngredientDetails />

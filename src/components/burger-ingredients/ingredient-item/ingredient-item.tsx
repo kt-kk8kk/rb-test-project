@@ -31,6 +31,7 @@ export const IngredientItem = ({
 	return (
 		<li
 			ref={dragRef}
+			data-testid={`ingredient-${ingredient.type}`}
 			className={`${styles.item} mb-10`}
 			style={{ opacity: isDragging ? 0.5 : 1 }}>
 			<Link

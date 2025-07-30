@@ -116,7 +116,10 @@ export const BurgerConstructor = (): React.JSX.Element => {
 
 	return (
 		<section className={styles.burger_constructor}>
-			<div className={styles.drop_zone} ref={dropRef}>
+			<div
+				className={styles.drop_zone}
+				ref={dropRef}
+				data-testid='constructor-dropzone'>
 				<div className='mb-4 pl-8'>
 					{bun ? (
 						<ConstructorElement
@@ -190,6 +193,7 @@ export const BurgerConstructor = (): React.JSX.Element => {
 			<footer className={`${styles.constructor_footer} mt-10`}>
 				<ConstructorTotalSumm total={totalPrice} />
 				<Button
+					data-testid='order-button'
 					htmlType='button'
 					type='primary'
 					size='large'
@@ -201,6 +205,7 @@ export const BurgerConstructor = (): React.JSX.Element => {
 
 			{isModalOpen && (
 				<Modal
+					data-testid='modal-order'
 					onClose={() => {
 						dispatch(closeModal());
 						dispatch(clearOrder());

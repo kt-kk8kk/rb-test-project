@@ -1,4 +1,3 @@
-// src/services/middleware/socket-middleware.ts
 import { Middleware, MiddlewareAPI, Dispatch, Action } from '@reduxjs/toolkit';
 import { RootState } from '../root-reducer';
 

@@ -3,7 +3,7 @@ import { BurgerIngredients } from '@components/burger-ingredients/burger-ingredi
 import { BurgerConstructor } from '@components/burger-constructor/burger-constructor';
 import { Preloader } from '@components/preloader/preloader';
 import { useAppSelector } from '@hooks/use-redux-hooks';
-import type { RootState } from '@services/store';
+import type { RootState } from '@services/root-reducer';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
