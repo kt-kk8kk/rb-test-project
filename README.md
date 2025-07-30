@@ -34,3 +34,8 @@
 3. Отправить ветку на GitHub: `git push origin new-branch-name`.
 
 4. Открыть Pull Request на GitHub и отправить ссылку на него в Практикум на проверку.
+
+## Развернутая версия проекта
+
+Проект развернут на GitHub Pages. Актуальную версию проекта можно посмотреть тут:
+https://kt-kk8kk.github.io/rb-test-project/
