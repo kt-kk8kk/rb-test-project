@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch } from '@hooks/use-redux-hooks';
 import {
-	BrowserRouter,
+	HashRouter,
 	Routes,
 	Route,
 	useLocation,
@@ -103,6 +103,7 @@ function AppRoutes() {
 						path={ROUTES.INGREDIENT}
 						element={
 							<Modal
+								data-testid='modal-ingredient'
 								title='Детали ингредиента'
 								onClose={handleModalClose}>
 								<IngredientDetails />
@@ -132,7 +133,7 @@ function AppRoutes() {
 }
 
 export const App = (): React.JSX.Element => (
-	<BrowserRouter>
+	<HashRouter>
 		<AppRoutes />
-	</BrowserRouter>
+	</HashRouter>
 );

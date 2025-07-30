@@ -9,7 +9,7 @@ import { FormActions } from '@components/form-container/form-actions/form-action
 import { ErrorMessage } from '@components/error-message/error-message';
 import { ROUTES } from '@utils/routes';
 import { useAppDispatch, useAppSelector } from '@hooks/use-redux-hooks';
-import type { RootState } from '@services/store';
+import type { RootState } from '@services/root-reducer';
 import { login, resetError } from '@services/slices/user-slice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from '@/hooks/use-form';

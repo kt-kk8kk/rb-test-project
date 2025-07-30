@@ -15,7 +15,7 @@ import {
 	forgotPassword,
 	resetForgotPasswordState,
 } from '@services/slices/forgot-password-slice';
-import type { RootState } from '@services/store';
+import type { RootState } from '@services/root-reducer';
 
 export const ForgotPasswordPage = (): React.JSX.Element => {
 	const dispatch = useAppDispatch();
